@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Observations météo pour Québec</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="titre">Données météo pour Québec ({{date}})</div>
+    <div id="container">
+        <div id="observations">
+            <p id="titreObs">Observation</p>
+            <p>Température: <span class="valObs">{{temperature}}</span></p>
+            <p>Condition: <span class="valObs">{{condition}}</span></p>
+        </div>
+
+        <div id="normales">
+            <p id="titreNormales">Normales</p>
+            <p>Minimum:  <span class="norObs">{{normalesMin}}°C</span></p>
+            <p>Maximum:  <span class="norObs">{{normalesMax}}°C</span></p>
+        </div>
+    </div>
+</body>
+</html>
