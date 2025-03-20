@@ -2,10 +2,12 @@ import bs4 as bs
 import urllib.request
 import time
 import warnings
+#Enlève certains avertissements
 warnings.filterwarnings('ignore', category=bs.builder.XMLParsedAsHTMLWarning)
 
 class Meteo:
     "Lecteur météo en format XML"
+    #Constructeur avec initialisation des variable
     def __init__(self, lienURL):
         self._lienURL = lienURL
         self._condition = ""
@@ -16,10 +18,10 @@ class Meteo:
         self._avertissement = ""
         self._dateHeure = ""
         self._ancienneLectureTemperature = 0
-
+    #Lecture de la météo, soit la mise à jour
     def lireMeteo(self):
         self._lireXML()
-        self._dateHeure = time.asctime(time.localtime(time.time()))
+        self._dateHeure = time.asctime(time.localtime(time.time())) #Heure de la réception des données.
         temperature = float(self._temperature.replace("°C", "").replace(",", "."))
         if  temperature > self._ancienneLectureTemperature:
             self._tendanceTemperature = "hausse"
@@ -29,7 +31,7 @@ class Meteo:
             self._tendanceTemperature = self._tendanceTemperature
 
         self._ancienneLectureTemperature = temperature
-
+    #Accesseurs et mutateurs
     @property
     def condition(self):
         return self._condition
@@ -51,7 +53,7 @@ class Meteo:
     @property
     def tendanceTemperature(self):
         return self._tendanceTemperature
-
+    #Lecture du fichier XML sur le web
     def _lireXML(self):
         try:
             url = self._lienURL
@@ -71,7 +73,7 @@ class Meteo:
                         if item.count('Pression') > 0:
                             self._pression = item.split(":")[1].split("kPa")[0].strip()
                             self._tendancePression = item.split("la")[1].strip()
-
+            #Pour les avertissements météo.
             avertissementTrouve = False
             for n, titre in enumerate(title):
                 if titre.text.count("AVERTISSEMENT") > 0:
@@ -79,12 +81,12 @@ class Meteo:
                     avertissementTrouve = True
             if avertissementTrouve == False:
                 self._avertissement = ""
-
+        #Exception
         except Exception as e:
             print('Oups un problème...' + str(e))
 
 
-
+#Pour faire quelques tests
 if __name__ == '__main__':
  m = Meteo('https://meteo.gc.ca/rss/city/qc-133_f.xml')
  m.lireMeteo()

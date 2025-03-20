@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Requête pour les normales</title>
+    <link href="{{ url_for('static', filename='styleNormal.css') }}" rel="stylesheet">
 </head>
 <body>
-<form action="/add" method="post">
-        <label>Nom</label>
-        <input type="text" id="nom" name="nom" placeholder="Nom">
-        <input type="reset" value="Effacer">
-        <input type="submit" value="Soumettre">
-    </form>
+<div id="titre">Requête pour les normales</div>
+<div id="container">
+    <div id="rechercheJour">
+        <form action="/requetes" method="post">
+            <p>Recherche par date</p>
+            <label>Date</label>
+            <input type="date" id="date" name="date" >
+            <input type="submit" value="Soumettre">
+            <div id="resultat">
+                <p>Jours: {{date}}</p>
+                <p>Min: {{normalesMin}}°C</p>
+                <p>Max: {{normalesMax}}°C</p>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

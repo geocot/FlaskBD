@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+}
+#container{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 300px;
+    font-style: italic;
+}
+#titre{
+    background-color: #7e6c03;
+    color: azure;
+    display: inline-block;
+    font-size: 24px;
+    font-weight: bold;
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+}
+
+#rechercheJour{
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    border: solid 1px #7a6203;
+    border-radius: 5px;
+    background-color: #f3e3b2;
+}
+
+#rechercheJour p {
+    font-weight: bold;
+    margin-bottom: 7px;
+    margin-top: 0px;
+    font-size: 20px;
+}
+
+#resultat p{
+    font-weight: normal;
+    margin: 2px;
+    font-size: 16px;
+}
+
+#resultat {
+    border: solid 1px #130f01;
+    border-radius: 5px;
+    background-color: #e1e1e1;
+    margin: 5px;
+    padding: 5px;
+}
